@@ -1,6 +1,7 @@
 pipeline {
   agent {
     docker {
+      // install "docker pipeline" plugin in jenkins
       image 'abhishekf5/maven-abhishek-docker-agent:v1'
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
@@ -8,7 +9,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        sh 'echo passed'
+        sh 'echo passed'//Jenkinsfile is already in the source code repository.Jenkins to get and run the jenkins pipeline.It will any ways clone the repository.   
         //git branch: 'main', url: 'https://github.com/iam-veeramalla/Jenkins-Zero-To-Hero.git'
       }
     }
@@ -16,7 +17,11 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
+        // maven is already available in the docker image.So we don't need // install maven using "ManageJenkins>GlobalToolConfiguration>Maven"
+        //def mavenHome= tool name: "Maven-3.6.1",type: "maven"
+        //def mavenCMD= "${mavenHome}/bin/bash/mvn"
+        //sh "${mavenCMD} clean package"
+        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package' //this finds the pom.xml file
       }
     }
     stage('Static Code Analysis') {
