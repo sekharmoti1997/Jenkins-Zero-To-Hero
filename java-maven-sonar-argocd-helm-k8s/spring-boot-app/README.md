@@ -60,7 +60,7 @@ chmod -R 755 /home/sonarqube/sonarqube-9.4.0.54424
 chown -R sonarqube:sonarqube /home/sonarqube/sonarqube-9.4.0.54424
 cd sonarqube-9.4.0.54424/bin/linux-x86-64/
 ./sonar.sh start
-default userName=admin password=admin123
+default userName=admin password=admin
 How will jenkins authenticate with sonarqube: >Myaccount>security>ProvideTokenName and GenerateToken>copyToken
  >manageJenkins>ManageCredentials>system>globalCredentials>AddCredentials>PastToken in Secrete box and give name at ID box
 ```
